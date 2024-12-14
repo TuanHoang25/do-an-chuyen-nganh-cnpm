@@ -1,0 +1,82 @@
+/* ... (other styles) */
+
+.input-wrapper {
+  position: relative; /* For positioning the clear icon */
+  margin-bottom: 1rem; /* Add margin below the input wrapper */
+}
+
+
+
+.clear-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust positioning as needed */
+    transform: translateY(-50%); /* Center vertically */
+    cursor: pointer;
+    color: #999; /* Light gray color */
+}
+
+.clear-icon:hover {
+    color: #555; /* Darker gray on hover */
+}
+
+
+/* ... other styles  */
+
+
+
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+    background-color: #f0f5fa; /* Light background */
+    font-family: 'Poppins', sans-serif; /* Example font - import or use system font */
+}
+
+.login-title {
+    font-size: 2.5rem;
+    color: #3498db; /* Example color */
+    margin-bottom: 2rem; /* Add some spacing */
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Adjust width as needed */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+
+.login-label {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.login-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-button {
+    background-color: #2ecc71; /* Example button color */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600; /* Make button text bolder */
+}
+
+.login-button:hover {
+    background-color: #27ae60; /* Darker color on hover */
+}
