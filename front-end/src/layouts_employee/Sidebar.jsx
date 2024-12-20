@@ -1,6 +1,5 @@
 import { Button, Nav, NavItem } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
-import user1 from "../assets/images/users/user4.jpg";
 import probg from "../assets/images/bg/download.jpg";
 import { useAuth } from "../context/AuthContext";
 
@@ -11,44 +10,24 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
-    title: "Alert",
-    href: "/alerts",
-    icon: "bi bi-bell",
+    title: "Nghỉ phép",
+    href: "/employee-dashboard/leave",
+    icon: "bi bi-envelope-paper",
   },
   {
-    title: "Attendence", // Thay đổi tiêu đề thành "Departments"
+    title: "Điểm danh", // Thay đổi tiêu đề thành "Departments"
     href: "/employee-dashboard/Attendence", // Cập nhật href
-    icon: "bi bi-building", // Thay đổi icon thành icon phù hợp với attendence
+    icon: "bi bi-stopwatch", // Thay đổi icon thành icon phù hợp với attendence
   },
   {
-    title: "Employees",
-    href: "/admin-dashboard/employees",
-    icon: "bi bi-people",
+    title: "Google Maps",
+    href: "/employee-dashboard/googlemaps",
+    icon: "bi bi-geo-alt-fill",
   },
   {
-    title: "Cards",
-    href: "/cards",
-    icon: "bi bi-card-text",
-  },
-  {
-    title: "Grid",
-    href: "/grid",
-    icon: "bi bi-columns",
-  },
-  {
-    title: "Table",
-    href: "/table",
-    icon: "bi bi-layout-split",
-  },
-  {
-    title: "Forms",
-    href: "/forms",
-    icon: "bi bi-textarea-resize",
-  },
-  {
-    title: "Breadcrumbs",
-    href: "/breadcrumbs",
-    icon: "bi bi-link",
+    title: "Công việc",
+    href: "/employee-dashboard/task",
+    icon: "bi bi-briefcase-fill",
   },
   {
     title: "Profile",
@@ -72,7 +51,17 @@ const Sidebar = () => {
         style={{ background: `url(${probg}) no-repeat` }}
       >
         <div className="p-3 d-flex">
-          <img src={user1} alt="user" width="50" className="rounded-circle" />
+          <img
+            src={`http://localhost:3000/${user.image}`}
+            alt="user"
+            style={{
+              width: "50px",
+              height: "50px",
+              objectFit: "cover", // Đảm bảo ảnh được cắt vừa khung
+              borderRadius: "50%", // Tạo hiệu ứng tròn
+              border: "2px solid white", // Viền trắng xung quanh
+            }}
+          />
           <Button
             color="white"
             className="ms-auto text-white d-lg-none"

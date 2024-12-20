@@ -14,7 +14,7 @@ import {
   Button,
 } from "reactstrap";
 import Logo from "./Logo";
-import LogoWhite from "../assets/images/logos/materialprowhite.svg?react";
+import LogoWhite from "../assets/images/logos/HrText.svg?react";
 import user1 from "../assets/images/users/user4.jpg";
 import { useAuth } from "../context/AuthContext";
 import "./Header.css"; // CSS tùy chỉnh
@@ -37,6 +37,7 @@ const Header = () => {
       <div className="d-flex align-items-center">
         <div className="d-lg-block d-none me-5 pe-3">
           <Logo />
+          <LogoWhite />
         </div>
         <NavbarBrand href="/">
           <LogoWhite className=" d-lg-none" />

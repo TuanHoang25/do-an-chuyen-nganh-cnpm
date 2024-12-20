@@ -32,6 +32,16 @@ nav {
 .navbar-menu-container {
   display: none;
 }
+.navbar-link {
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+  font-weight: 500;
+}
+.navbar-link.active {
+  color: #007bff;
+  font-weight: bold;
+}
 .navbar-links-container a {
   margin-right: 3rem;
   text-decoration: none;
@@ -52,6 +62,16 @@ nav {
 }
 .navbar-cart-icon {
   font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px; /* Điều chỉnh khoảng cách giữa icon và button */
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.navbar-cart-icon:hover,
+.navbar-cart-icon:active {
+  transform: scale(1.1); /* Tăng kích thước để nó sáng lên */
+  filter: brightness(0.8); /* Làm sáng biểu tượng */
 }
 .primary-button:hover {
   background-color: rgb(234, 234, 234);
@@ -201,7 +221,7 @@ nav {
   margin-top: 10rem;
 }
 .footer-logo-container {
-  max-width: 110px;
+  max-width: 250px;
 }
 .footer-icons {
   margin-top: 2.5rem;

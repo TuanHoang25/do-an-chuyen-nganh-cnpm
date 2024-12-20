@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import "../assets/css/Login.css"; // Create a CSS file for styling
+import "./Login.css";
+import { FaLock, FaUser } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext"; // Create a CSS file for styling
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [location, setLocation] = useState("");
   const [error, setError] = useState(null);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auth/login",
-        { email, password }
+        { name, password, location }
       );
       if (response.data.success) {
         login(response.data.user);
@@ -36,49 +37,89 @@ const Login = () => {
       }
     }
   };
-  const clearInput = (setter) => {
-    setter("");
+  //Thêm hàm tự lấy vị trí nhân viên
+
+  const fetchCityName = async (latitude, longitude) => {
+    try {
+      const response = await axios.get(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+      );
+      const city =
+        response.data.city ||
+        response.data.locality ||
+        response.data.principalSubdivision;
+      setLocation(city); // Cập nhật vị trí
+    } catch (error) {
+      console.error("Error fetching city name:", error);
+      setError("Không thể lấy tên thành phố.");
+    }
   };
 
+  useEffect(() => {
+    document.body.classList.add("login-page");
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            // Chuyển đổi tọa độ thành tên thành phố (sử dụng API hoặc thư viện)
+            fetchCityName(latitude, longitude);
+          },
+          (error) => {
+            console.error("Error getting location:", error);
+            setError("Không thể lấy vị trí hiện tại.");
+          }
+        );
+      } else {
+        setError("Geolocation không được hỗ trợ trên trình duyệt này.");
+      }
+    };
+    getLocation();
+    return () => {
+      document.body.classList.remove("login-page");
+    };
+  }, []);
   return (
-    <div className="login-container">
-      <h1 className="login-title">Login</h1> {/* Title centered */}
-      {error && <p className="text-red-500">{error}</p>}
-      <form onSubmit={handleSubmit} className="login-form">
-        <label htmlFor="email" className="login-label">
-          Email
-        </label>
-        <div className="input-wrapper">
+    <div className="wrapper">
+      <form onSubmit={handleSubmit}>
+        <h1 className="poppins-bold">Đăng nhập</h1>
+        {error && <p className="poppins-regular">{error}</p>}
+        <div className="input-box">
+          {/* <label htmlFor="name" className="poppins-semibold">
+          </label> */}
           <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            className="login-input"
-            placeholder="Enter your email"
+            type="text"
+            placeholder="Enter your username"
             required
-            value={email}
+            readOnly
+            onChange={(e) => setName(e.target.value)}
+            onFocus={(e) => e.target.removeAttribute("readonly")}
+            value={name}
           />
-          <span className="clear-icon" onClick={() => clearInput(setEmail)}>
-            &times;
-          </span>
+          <FaUser className="icon" />
         </div>
-
-        <label htmlFor="password" className="login-label">
-          Password
-        </label>
-        <div className="input-wrapper">
+        <div className="input-box">
+          {/* <label htmlFor="password" className="poppins-semibold">
+          </label> */}
           <input
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            className="login-input"
-            placeholder="Enter your password"
+            placeholder=" Enter your password"
             required
+            readOnly
+            onChange={(e) => setPassword(e.target.value)}
+            onFocus={(e) => e.target.removeAttribute("readonly")}
             value={password}
           />
-          <span className="clear-icon" onClick={() => clearInput(setPassword)}>
-            &times;
-          </span>
+          <FaLock className="icon" />
         </div>
-        <button type="submit" className="login-button">
+        {/* <div className="remember-forgot">
+          <label>
+            <input type="checkbox" />
+            Remember Me
+          </label>
+          <a href="#">Forgot Password</a>
+        </div> */}
+        <button type="submit" className="btn">
           Login
         </button>
       </form>

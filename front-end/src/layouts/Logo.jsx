@@ -1,9 +1,9 @@
-import LogoDark from "../assets/images/logos/materialpro.svg?react";
+import LogoDark from "../assets/images/logos/system.svg?react";
 import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <Link to="/">
+    <Link to="/admin-dashboard">
       <LogoDark />
     </Link>
   );

@@ -14,8 +14,7 @@ import {
   Button,
 } from "reactstrap";
 import Logo from "./Logo";
-import LogoWhite from "../assets/images/logos/materialprowhite.svg?react";
-import user1 from "../assets/images/users/user4.jpg";
+import LogoWhite from "../assets/images/logos/HrText.svg?react";
 import { useAuth } from "../context/AuthContext";
 import "./Header.css"; // CSS tùy chỉnh
 
@@ -23,7 +22,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
-
+  const {user} = useAuth();
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
     setIsOpen(!isOpen);
@@ -37,6 +36,7 @@ const Header = () => {
       <div className="d-flex align-items-center">
         <div className="d-lg-block d-none me-5 pe-3">
           <Logo />
+          <LogoWhite/>
         </div>
         <NavbarBrand href="/">
           <LogoWhite className=" d-lg-none" />
@@ -97,10 +97,15 @@ const Header = () => {
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="transparent">
             <img
-              src={user1}
+              src={`http://localhost:3000/${user.image}`}
               alt="profile"
-              className="rounded-circle"
-              width="30"
+              style={{
+                width: "50px",
+                height: "50px",
+                objectFit: "cover", // Đảm bảo ảnh được cắt vừa khung
+                borderRadius: "50%", // Tạo hiệu ứng tròn
+                border: "2px solid white", // Viền trắng xung quanh
+              }}
             />
           </DropdownToggle>
           <DropdownMenu className="dropdown-profile-menu">

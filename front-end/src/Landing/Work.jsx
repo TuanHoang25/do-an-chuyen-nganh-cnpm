@@ -1,33 +1,32 @@
-import PickMeals from "../assets/pick-meals-image.png";
-import ChooseMeals from "../assets/choose-image.png";
-import DeliveryMeals from "../assets/delivery-image.png";
+import Secretary from "../assets/secretary.png";
+import Developer from "../assets/developer.png";
+import Marketing from "../assets/marketing.png";
 
 const Work = () => {
   const workInfoData = [
     {
-      image: PickMeals,
-      title: "Pick Meals",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
+      image: Secretary,
+      title: "Thư ký",
+      text: "Quản lý lịch trình, hỗ trợ tổ chức các cuộc họp, xử lý văn bản, và đảm bảo luồng thông tin nội bộ trong công ty diễn ra hiệu quả.",
     },
     {
-      image: ChooseMeals,
-      title: "Choose How Often",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et ",
+      image: Developer,
+      title: "Lập trình viên",
+      text: "Thiết kế, phát triển, đóng gói và bảo trì ,kiểm thử các hệ thống quản lý nhân sự, đảm bảo tính bảo mật và hiệu suất các ứng dụng trong công ty.",
     },
     {
-      image: DeliveryMeals,
-      title: "Fast Deliveries",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et lorem ipsum",
+      image: Marketing,
+      title: "NV tiếp thị",
+      text: "Lập kế hoạch và triển khai các chiến dịch quảng bá, xây dựng thương hiệu công ty và thu hút khách hàng",
     },
   ];
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
-        <p className="primary-subheading">Work</p>
-        <h1 className="primary-heading">How It Works</h1>
+        <p className="primary-subheading">Công việc</p>
+        <h1 className="primary-heading">Giới thiệu công việc</h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+          Một số vị trí trong công ty nhân sự cùng mô tả cơ bản về nhiệm vụ ,công việc của những vị trí này
         </p>
       </div>
       <div className="work-section-bottom">

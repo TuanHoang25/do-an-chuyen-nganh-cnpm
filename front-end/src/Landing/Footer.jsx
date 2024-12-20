@@ -1,4 +1,4 @@
-import Logo from "../assets/Logo.svg";
+import Logo from "../assets/HrText.svg";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
 import { BsYoutube } from "react-icons/bs";
@@ -20,22 +20,22 @@ const Footer = () => {
       </div>
       <div className="footer-section-two">
         <div className="footer-section-columns">
-          <span>Qualtiy</span>
-          <span>Help</span>
-          <span>Share</span>
-          <span>Carrers</span>
-          <span>Testimonials</span>
-          <span>Work</span>
+          <span>Chất lượng</span>
+          <span>Giúp đỡ</span>
+          <span>Chia sẻ</span>
+          <span>Quan tâm</span>
+          <span>Công việc</span>
+          
         </div>
         <div className="footer-section-columns">
-          <span>244-5333-7783</span>
-          <span>hello@food.com</span>
-          <span>press@food.com</span>
-          <span>contact@food.com</span>
+          <span>0937183556</span>
+          <span>tuanhoang2500@gmail.com</span>
+          <span>annguyen240303@gmail.com</span>
+          <span>thanhdangvan231@gmail.com</span>
         </div>
         <div className="footer-section-columns">
-          <span>Terms & Conditions</span>
-          <span>Privacy Policy</span>
+          <span>Điều khoản & Giấy phép</span>
+          <span>Chính sách bảo mật</span>
         </div>
       </div>
     </div>

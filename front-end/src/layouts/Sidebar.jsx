@@ -6,59 +6,49 @@ import { useAuth } from "../context/AuthContext";
 
 const navigation = [
   {
-    title: "Home",
+    title: "Trang chủ",
     href: "/admin-dashboard",
     icon: "bi bi-speedometer2",
   },
   {
-    title: "Attendance",
+    title: "Điểm danh",
     href: "/admin-dashboard/attendanceManager",
-    icon: "bi bi-bell",
+    icon: "bi bi-hourglass-split",
   },
   {
-    title: "Departments", // Thay đổi tiêu đề thành "Departments"
+    title: "Vị trí", // Thay đổi tiêu đề thành "Departments"
     href: "/admin-dashboard/departments", // Cập nhật href
     icon: "bi bi-building", // Thay đổi icon thành icon phù hợp với departments
   },
   {
-    title: "Employees",
+    title: "Nhân viên",
     href: "/admin-dashboard/employees",
     icon: "bi bi-people",
   },
   {
-    title: "Applicants",
+    title: "Tuyển dụng",
     href: "/admin-dashboard/applicants",
     icon: "bi bi-card-text",
   },
   {
-    title: "Grid",
-    href: "/grid",
-    icon: "bi bi-columns",
+    title: "Nghỉ phép",
+    href: "/admin-dashboard/leave-manager",
+    icon: "bi bi-envelope-paper-fill",
   },
   {
-    title: "Table",
-    href: "/table",
-    icon: "bi bi-layout-split",
-  },
-  {
-    title: "Forms",
-    href: "/forms",
-    icon: "bi bi-textarea-resize",
-  },
-  {
-    title: "Breadcrumbs",
-    href: "/breadcrumbs",
-    icon: "bi bi-link",
+    title: "Công việc",
+    href: "/admin-dashboard/task-manager",
+    icon: "bi bi-person-workspace",
   },
   {
     title: "About",
-    href: "/about",
-    icon: "bi bi-people",
+    href: "/admin-dashboard/about",
+    icon: "bi bi-gear-fill",
   },
 ];
 
 const Sidebar = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
@@ -102,13 +92,11 @@ const Sidebar = () => {
               </Link>
             </NavItem>
           ))}
-          <Link to="/login" className="mt-3">
-            {/* Replace Button with Link */}
-            <Button color="primary" block>
-              {/* Use a primary button */}
-              <i className="bi bi-box-arrow-in-right"></i> Đăng xuất
-            </Button>
-          </Link>
+          {/* Replace Button with Link */}
+          <Button onClick={logout} color="primary" block>
+            {/* Use a primary button */}
+            <i className="bi bi-box-arrow-in-right"></i> Đăng xuất
+          </Button>
         </Nav>
       </div>
     </div>

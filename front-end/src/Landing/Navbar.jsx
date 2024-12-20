@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Logo from "../assets/HrText.svg";
-import { BsCart2 } from "react-icons/bs";
+import { GrLanguage } from "react-icons/gr";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -14,69 +15,85 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import { useNavigate } from "react-router-dom";
+import WorkIcon from '@mui/icons-material/Work';
+const menuOptions = [
+  { text: "Trang Chủ", href: "/", icon: <HomeIcon /> },
+  { text: "Về chúng tôi", href: "/about", icon: <InfoIcon /> },
+  { text: "Nhân sự", href: "/hr", icon: <CommentRoundedIcon /> },
+  { text: "Công việc", href: "/work", icon: <WorkIcon /> },
+  { text: "Liên hệ", href: "/contact", icon: <PhoneRoundedIcon /> },
+];
+
 const Navbar = () => {
-  const navigate = useNavigate(); // Khởi tạo useNavigate
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [openMenu, setOpenMenu] = useState(false);
 
   const handleLoginClick = () => {
-    navigate("/login"); // Chuyển hướng đến trang đăng nhập
+    navigate("/login");
   };
 
-  const [openMenu, setOpenMenu] = useState(false);
-  const menuOptions = [
-    {
-      text: "Home",
-      icon: <HomeIcon />,
-    },
-    {
-      text: "About",
-      icon: <InfoIcon />,
-    },
-    {
-      text: "Testimonials",
-      icon: <CommentRoundedIcon />,
-    },
-    {
-      text: "Contact",
-      icon: <PhoneRoundedIcon />,
-    },
-    {
-      text: "Cart",
-      icon: <ShoppingCartRoundedIcon />,
-    },
-  ];
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
   return (
     <nav>
+      {/* Logo */}
       <div className="nav-logo-container">
-        <img src={Logo} alt="" width={300} />
+        <img src={Logo} alt="Logo" width={300} />
       </div>
+
+      {/* Desktop Navigation Links */}
       <div className="navbar-links-container">
-        <a href="">Home</a>
-        <a href="">About</a>
-        <a href="">Testimonials</a>
-        <a href="">Contact</a>
-        <a href="">
-          <BsCart2 className="navbar-cart-icon" />
-        </a>
+        {menuOptions.map((item, index) => (
+          <Link
+            key={index}
+            to={item.href}
+            className={`navbar-link ${
+              location.pathname === item.href ? "active" : ""
+            }`}
+          >
+            {item.text}
+          </Link>
+        ))}
+        <GrLanguage
+          className="navbar-cart-icon"
+          size={20}
+          onClick={() => navigate("/cart")}
+        />
+
         <button className="primary-button" onClick={handleLoginClick}>
+          <i className="bi bi-box-arrow-in-right me-2"></i>
           Đăng nhập
         </button>
       </div>
+
+      {/* Mobile Menu Icon */}
       <div className="navbar-menu-container">
-        <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
+        <HiOutlineBars3 onClick={toggleMenu} />
       </div>
-      <Drawer open={openMenu} onClose={() => setOpenMenu(false)} anchor="right">
-        <Box
-          sx={{ width: 250 }}
-          role="presentation"
-          onClick={() => setOpenMenu(false)}
-          onKeyDown={() => setOpenMenu(false)}
-        >
+
+      {/* Drawer for Mobile Navigation */}
+      <Drawer
+        open={openMenu}
+        onClose={toggleMenu}
+        anchor="right"
+        sx={{ visibility: openMenu ? "visible" : "hidden" }}
+        role="presentation"
+        inert={openMenu ? undefined : "true"}
+      >
+        <Box sx={{ width: 250 }} role="presentation" onClick={toggleMenu}>
           <List>
-            {menuOptions.map((item) => (
-              <ListItem key={item.text} disablePadding>
-                <ListItemButton>
+            {menuOptions.map((item, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton
+                  onClick={() => {
+                    navigate(item.href);
+                    toggleMenu();
+                  }}
+                  selected={location.pathname === item.href}
+                >
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
                 </ListItemButton>
@@ -84,6 +101,10 @@ const Navbar = () => {
             ))}
           </List>
           <Divider />
+          <ListItemButton onClick={handleLoginClick}>
+            <i className="bi bi-box-arrow-in-right me-2"></i>
+            <ListItemText primary="Đăng nhập" />
+          </ListItemButton>
         </Box>
       </Drawer>
     </nav>

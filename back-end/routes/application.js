@@ -1,5 +1,5 @@
 import express from "express";
-import { apply, getApplicationDetails, getApply, updateApplicationStatus, upload } from "../controllers/applicationController.js";
+import { apply, getApplicationDetails, getApply, updateApplicationStatus, upload } from "../controllers/applicationcontroller.js";
 
 const router = express.Router();
 router.get("/getApply", getApply);

@@ -1,5 +1,5 @@
 import AboutBackground from "../assets/about-background.png";
-import AboutBackgroundImage from "../assets/about-background-image.png";
+import AboutBackgroundImage from "../assets/aboutImage.png";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 
 const About = () => {
@@ -12,22 +12,21 @@ const About = () => {
         <img src={AboutBackgroundImage} alt="" />
       </div>
       <div className="about-section-text-container">
-        <p className="primary-subheading">About</p>
-        <h1 className="primary-heading">
-          Food Is An Important Part Of A Balanced Diet
-        </h1>
+        <p className="primary-subheading">Về chúng tôi</p>
+        <h1 className="primary-heading">Hệ thống website quản lý nhân sự</h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+          Chúng tôi là nhóm những sinh viên năm 4 từ trường Đại Học Công Nghệ
+          TPHCM
         </p>
         <p className="primary-text">
-          Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
-          facilisis at fringilla quam.
+          Chúng tôi lập ra website quản lý nhân sự với mong muốn tăng cường hiệu
+          quả quản lý và cải thiện quy trình làm việc trong các doanh nghiệp
+          công ty hiện nay
         </p>
         <div className="about-buttons-container">
-          <button className="secondary-button">Learn More</button>
+          <button className="secondary-button">Tìm hiểu thêm</button>
           <button className="watch-video-button">
-            <BsFillPlayCircleFill /> Watch Video
+            <BsFillPlayCircleFill /> Xem Video
           </button>
         </div>
       </div>

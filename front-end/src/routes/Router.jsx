@@ -4,19 +4,21 @@ import Loader from "../layouts/loader/Loader";
 import PrivateRoute from "../utils/PrivateRoute";
 import RoleBaseRoute from "../utils/RoleBaseRoute";
 import DashboardContent from "../views/ui/DashboardContent";
-import WelcomeEmployee from "../views/ui_employee/WelcomeEmployee";
-import Departments from "../components/Departments/Departments";
-import CreateDepartments from "../components/Departments/CreateDepartments";
-import Employees from "../components/Employees/Employees";
-import CreateEmployees from "../components/Employees/CreateEmployees";
 import Attendance from "../components/EmployeeFunction/Attendence";
-import CompanyIntro from "../views/CompanyIntro";
 import Apply from "../views/ui_applicant/Apply";
-import AdminApplications from "../components/Applications/AdminApplication";
+import Employees from "../components/AdminFunction/Employees/Employees";
+import CreateEmployees from "../components/AdminFunction/Employees/CreateEmployees";
 import Profile from "../components/EmployeeFunction/Profile";
 import LandingPage from "../views/ui_applicant/LandingPage";
-import NotificationBell from "../views/NoficationBell";
-import AttendanceManager from "../components/Attendance/AttendanceManager";
+import AdminApplication from "../components/AdminFunction/Applications/AdminApplication";
+import Unauthorized from "../utils/Unauthorized";
+import Departments from "../components/AdminFunction/Departments/Departments";
+import AttendanceManager from "../components/AdminFunction/Attendance/AttendanceManager";
+import Leave from "../components/EmployeeFunction/Leave";
+import LeaveManager from "../components/AdminFunction/LeavesManager/LeaveManager";
+import Weather from "../components/EmployeeFunction/Weather";
+import DistanceCalculator from "../components/EmployeeFunction/DistanceCalculator";
+import CreateWork from "../components/AdminFunction/WorksManager/CreateWork";
 const Login = lazy(() => import("../views/Login"));
 const Dashboard = lazy(() => import("../layouts/FullLayout"));
 const DashboardEmployee = lazy(() =>
@@ -27,9 +29,10 @@ const Router = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         {/* <Route path="/" element={<Navigate to="/admin-dashboard" />} /> */}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<LandingPage />} />
         <Route path="/apply" element={<Apply />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route
           path="/admin-dashboard"
           element={
@@ -42,30 +45,37 @@ const Router = () => {
         >
           <Route index element={<DashboardContent />} />
           <Route path="departments" element={<Departments />} />
-          <Route path="create-departments" element={<CreateDepartments />} />
+          <Route path="create-departments" element={<createDepartments />} />
           <Route path="employees" element={<Employees />} />
           <Route path="create-employees" element={<CreateEmployees />} />
-          <Route path="applicants" element={<AdminApplications />} />
+          <Route path="applicants" element={<AdminApplication />} />
           <Route path="attendanceManager" element={<AttendanceManager />} />
+          <Route path="leave-manager" element={<LeaveManager />} />
+          <Route path="task-manager" element={<CreateWork />} />
         </Route>
         <Route
           path="/employee-dashboard"
           element={
             <PrivateRoute>
-              <RoleBaseRoute requiredRole={["admin", "employee"]}>
+              <RoleBaseRoute requiredRole={["user"]}>
                 <DashboardEmployee />
               </RoleBaseRoute>
             </PrivateRoute>
           }
         >
-          <Route index element={<NotificationBell />} />
+          {/* test thử notification bell */}
+          <Route index element={<Weather />} />
           <Route
             path="/employee-dashboard/Attendence"
             element={<Attendance />}
           />
+          <Route path="/employee-dashboard/leave" element={<Leave />} />
           <Route path="/employee-dashboard/profile/:id" element={<Profile />} />
+          <Route
+            path="/employee-dashboard/googlemaps"
+            element={<DistanceCalculator />}
+          />
         </Route>
-        <Route path="*" element={<Login />} />
       </Routes>
     </Suspense>
   );

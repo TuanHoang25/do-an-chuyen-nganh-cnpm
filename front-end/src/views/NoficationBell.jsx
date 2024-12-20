@@ -4,7 +4,6 @@ import "./NoficationBell.css"; // Import file CSS cho styling
 
 const NotificationBell = () => {
   const [notificationCount, setNotificationCount] = useState(0);
-
   // Giả sử gọi API hoặc tăng số thông báo
   useEffect(() => {
     // Giả sử có 1 thông báo mới trong ứng dụng
