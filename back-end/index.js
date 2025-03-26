@@ -12,7 +12,7 @@ connectDB();
 const app = express();
 app.use(
     cors({
-        origin: ["http://localhost:5173"],
+        origin: ["https://frontend-2vqh.onrender.com"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
