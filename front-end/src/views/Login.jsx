@@ -16,7 +16,7 @@ const Login = () => {
     // Handle login logic here (e.g., API call)
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "https://do-an-chuyen-nganh-cnpm.onrender.com/api/auth/login",
         { name, password, location }
       );
       if (response.data.success) {
