@@ -42,7 +42,7 @@ const Employees = () => {
   const fetchDepartments = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:3000/api/department", {
+      const response = await axios.get("https://do-an-chuyen-nganh-cnpm.onrender.com/api/department", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/employee", {
+      const response = await axios.get("https://do-an-chuyen-nganh-cnpm.onrender.com/api/employee", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -142,7 +142,7 @@ const Employees = () => {
                 <tr key={employee._id}>
                   <td>
                     <img
-                      src={`http://localhost:3000/${employee.userId.image}`}
+                      src={`https://do-an-chuyen-nganh-cnpm.onrender.com/${employee.userId.image}`}
                       alt={employee.userId.name}
                       style={{
                         width: "50px",
