@@ -53,7 +53,7 @@ const Apply = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/application/apply",
+        "https://do-an-chuyen-nganh-cnpm.onrender.com",
         ApplicantDataObj
       );
       // toast.success(response.data.message);
