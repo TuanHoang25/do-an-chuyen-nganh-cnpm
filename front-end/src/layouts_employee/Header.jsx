@@ -97,7 +97,7 @@ const Header = () => {
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="transparent">
             <img
-              src={`http://localhost:3000/${user.image}`}
+              src={`https://do-an-chuyen-nganh-cnpm.onrender.com/${user.image}`}
               alt="profile"
               style={{
                 width: "50px",
